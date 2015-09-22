@@ -1,12 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="RepsApp">
   <head>
     <meta charset="utf-8">
     <title>Find your representative</title>
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css" />
     <!-- TODO You need to put your style imports here -->
+    <style>
+      body { padding-top:70px; }
+    </style>
   </head>
+
   <body>
+    <div class="container" ng-controller="MainCtrl as main">
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a href="#" class="navbar-brand">Search your Reps</a>
+          </div>
+        </div>
+      </nav>
+      <h3>Find your Senators and Represenatives by searching below</h3>
+      <form class="form-horizontal" ng-submit="main.searchByZip(main.inputs.zip)">
+        <div class="form-group">
+          <label class="control-label col-sm-2">Zip Code:</label>
+          <div class="col-sm-8">
+            <input class="form-control" type="string" ng-model="main.inputs.zip">
+          </div>
+           <button class="btn btn-info col-sm-2" type="submit">Submit</button>
+        </div>
+    </form>
+    <form class="form-horizontal" ng-submit="main.searchRepsByName(main.inputs.reps)">
+        <div class="form-group">
+          <label class="control-label col-sm-2">Rep Last Name:</label>
+          <div class="col-sm-8">
+            <input class="form-control" type="string" ng-model="main.inputs.reps">
+           </div>
+          <button class="btn btn-info col-sm-2" type="submit">Submit</button>
+        </div>
+    </form>
+    <form class="form-horizontal" ng-submit="main.searchRepsByState(main.inputs.state)">
+        <div class="form-group">
+          <label class="control-label col-sm-2">Reps by State:</label>
+          <div class="col-sm-8">
+            <input class="form-control" type="string" ng-model="main.inputs.state">
+          </div>
+          <button class="btn btn-info col-sm-2" type="submit">Submit</button>
+       </div>
+    </form>
+    <form class="form-horizontal" ng-submit="main.searchSensByName(main.inputs.sens)">
+        <div class="form-group">
+          <label class="control-label col-sm-2">Senators Last Name:</label>
+          <div class="col-sm-8">
+            <input class="form-control" type="string" ng-model="main.inputs.sens">
+          </div>
+          <button class="btn btn-info col-sm-2" type="submit">Submit</button>
+       </div>
+    </form>
+    <form class="form-horizontal" ng-submit="main.searchSensByState(main.inputs.senState)">
+        <div class="form-group">
+          <label class="control-label col-sm-2">Senators by State:</label>
+          <div class="col-sm-8">
+            <input class="form-control" type="string" ng-model="main.inputs.senState">
+          </div> 
+          <button class="btn btn-info col-sm-2" type="submit">Submit</button>
+       </div>
+    </form>
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="rep in main.reps">
+        <h4 class="list-group-item-heading">{{rep.name}}</h4>
+        <p>State: {{rep.state}}</p>
+      </li>
+    </ul>
+
+    </div>
+
 
     <!-- TODO You need to put your script tags here -->
+    <script src="../bower_components/angular/angular.min.js"> </script>
+    <script src="js/app.js"></script>
   </body>
 </html>
